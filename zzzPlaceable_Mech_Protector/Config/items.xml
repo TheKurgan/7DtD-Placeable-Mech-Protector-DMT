@@ -6,8 +6,8 @@
 			<property class="Action0">
 				<property name="Class" value="Melee"/>
 				<property name="Delay" value="0.75"/>
-				<property name="DamageEntity" value="80"/>
-				<property name="DamageBlock" value="60"/>
+				<property name="DamageEntity" value="40"/>
+				<property name="DamageBlock" value="80"/>
 				<property name="Range" value="2.5"/>
 				<property name="Sphere" value="1.1"/>
 				<property name="Sound_start" value="swoosh" />
