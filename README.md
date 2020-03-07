@@ -1,6 +1,8 @@
 # TheKurgan-7DtD-Placeable-Mech-Protector-DMT
 7DtD Placeable Mech Protector for DMT
 
+ONLY WORKS IN SINGLE PLAYER. Will not work on a dedicated server.
+
 A Mech Robot that you can craft and place to defend your base for 7 Days to Die.
 
 Created for A18(B4).
