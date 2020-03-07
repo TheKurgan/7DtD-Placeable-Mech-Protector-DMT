@@ -1,5 +1,3 @@
-# 7 Days to Die Craftable Mech Protector (DMT)
-
 # ONLY WORKS IN SINGLE PLAYER. Will not work on a dedicated server.
 
 7DtD Placeable Mech Protector (DMT)
