@@ -13,4 +13,4 @@ Hard dependencies:
  2.   0-SphereIICore - https://tinyurl.com/vyzvt79
  3.   SphereIICORE needs to be compiled with DMT Modding Tool - https://github.com/HAL-NINE-THOUSAND/DMT
 
-Uses the model for the miniBike to place the mech for now because using the mech's own model will not allow it to be placed on the ground for some reason.
+The Craftable Mech uses the model for the miniBike to place the mech for now because using the mech's own model will not allow it to be placed on the ground for some reason.
