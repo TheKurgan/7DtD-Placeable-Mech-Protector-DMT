@@ -1,0 +1,98 @@
+<configs>
+	<append xpath="/entity_classes">
+		<entity_class name="mechProtector" extends="humanMeleeMaleBanditTemplate">
+			<property name='Class' value='EntityAliveSDX, Mods' />
+			<property name="NPCID" value="spheretest"/>
+			<property name="Faction" value="whiteriver"/>
+			<property name="PhysicsBody" value="RobotRig"/>
+			<property name="Tags" value="entity,npc"/>
+			<property name="LootListAlive" value="62"/>
+			<property name="Mesh" value="#@modfolder(0-CreaturePackMechs):Resources/Robot.unity3d?Robot_X" />
+            <property name="ReplaceMaterial0" value="#@modfolder(0-CreaturePackMechs):Resources/RobotArmyMat.unity3d?metal_albedo"/>
+            <property name="ReplaceMaterial1" value="#@modfolder(0-CreaturePackMechs):Resources/RobotArmyMat.unity3d?paint_albedo"/>
+            <property name="ReplaceMaterial2" value="#@modfolder(0-CreaturePackMechs):Resources/RobotArmyMat.unity3d?rubber_albedo"/>
+			<property name="AvatarController" value="AvatarAnimalController"/> 
+			<property name="IsEnemyEntity" value="false"/>
+			<property name="HasRagdoll" value="true"/> <!-- No ragdoll on entity, but when both Ragdoll and Rootmotion is false, the entity will not animate attacks on dedicated servers.  Set it to true even without a ragdoll but you MUST NOT have an E_Biped_Root tag on the entity or it will NRE  -->
+			<property name="HasDeathAnim" value="true"/>
+			<property name="RootMotion" value="false"/> 
+			<property name="MoveSpeed" value="0.5"/> 
+			<property name="MoveSpeedAggro" value="1.6,1.6"/> 
+			<property name="MoveSpeedPanic" value="1.6"/>
+			<property name="PainResistPerHit" value=".90"/>
+			<property name="MaxTurnSpeed" value="225"/>
+			<property name="AttackTimeoutDay" value="1.0"/> 
+			<property name="AttackTimeoutNight" value="1.0"/>
+			<property name="CanClimbLadders" value="true"/>
+			<property name="CanClimbVertical" value="true"/>
+			<property name="HandItem" value="handProtMech"/>
+			<property name="TimeStayAfterDeath" value="600"/>
+			<property name="DeadBodyHitPoints" value="500"/>
+			<drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
+			<drop event="Harvest" name="resourceMechanicalParts" tag="salvageHarvest" count="10"/> 
+			<drop event="Harvest" name="resourceScrapIron" tag="salvageHarvest" count="9"/>
+			<drop event="Harvest" name="resourceElectricParts" tag="salvageHarvest" count="12"/> 
+			<drop event="Harvest" name="resourceScrapPolymers" tag="salvageHarvest" count="9"/>	
+						
+			<property name="PathingBlocks" value="PathingCube" />
+			<property name="AIPathCostScale" value=".95, 1"/>
+			
+			<property name="AITask-1" value="ApproachAndAttackSDX, Mods" data="class=Entity,0"/>
+			<property name="AITask-2" value="ApproachAndFollowTargetSDX, Mods" data="incentives=Leader"/>
+			<property name="AITask-3" value="Look"/>
+			<property name="AITask-4" value="WanderSDX, Mods"/>
+			<property name="AITask-5" value="ApproachDistraction"/>
+			<property name="AITask-6" value="BreakBlock"/>
+			<property name="AITask-7" value="" />
+			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" data="class=Entity"/>  
+            <property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" data="class=Entity"/> 
+            <property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" data="class=Entity,80"/> 
+			<property name="AITarget-4" value=""/>
+			
+			<!-- Testing Senses... Seems effective -->
+			<property name="MaxViewAngle" value="315"/>
+			<property name="SightRange" value="100"/>
+			<property name="AINoiseSeekDist" value="30"/>
+			<property name="NoiseAlertThreshold" value="2"/>
+			
+			<property name="JumpMaxDistance" value="7, 9"/>
+			<property name="SoundRandomTime" value="120.0"/>
+			<property name="SoundRandom" value="MechProtRandom" />
+			<property name="SoundAlert" value="MechProtAlert" />
+			<property name="SoundAttack" value="MechProtAttack" />
+			<property name="SoundDeath" value="MechProtDie" />
+			<property name="SoundHurt" value="MechProtRandom" />
+			<property name="SoundSense" value="MechProtSense" />
+			<effect_group name="Base Effects">
+				<!-- <passive_effect name="JumpStrength" operation="base_set" value="0.4"/> --> <!-- Doesn't work -->
+				<passive_effect name="HealthMax" operation="base_set" value="600"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<passive_effect name="StaminaMax" operation="base_set" value="200"/>
+				<passive_effect name="HealthChangeOT" operation="base_set" value="1.2"/>
+				<passive_effect name="PhysicalDamageResist" operation="base_set" value="25" /> 
+				<passive_effect name="DistractionResistance" operation="base_set" value="0,0"/>
+				<passive_effect name="HypothermalResist" operation="base_add" value="100"/>
+				<passive_effect name="HyperthermalResist" operation="base_add" value="100"/>
+				<passive_effect name="TrapIncomingDamage" operation="base_set" value="-.9" /> 
+				<passive_effect name="BuffResistance" operation="base_add" value="10" tags="buffInjuryBleeding,buffInjuryBleedingZombie,buffInfectionCatch"/>
+				<passive_effect name="BuffResistance" operation="base_add" value="10" tags="buffLegSprained,buffLegBroken,buffArmSprained,buffPlayerFallingDamage"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="ModifyCVar" target="self" cvar="RadiatedRegenAmount" operation="set" value="6"/>
+				<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="self" buff="buffRadiatedRegen"/>
+			</effect_group>
+			
+			<property name="ParticleOnDeath" value="blood_death"/>
+			<property name="SurfaceCategory" value="metal"/> 
+			<property name="WalkType" value="7"/>
+			<property name="ExperienceGain" value="1550"/> 
+			<property name="LootDropProb" value="1.0"/> 
+			<property name="LootDropEntityClass" value="EntityLootContainerNPC"/>	
+			<property name="MapIcon" value="ui_game_symbol_bullet_point"/>
+			<property name="Names" value="1 of 9,2 of 9,3 of 9,4 of 9,6 of 9,7 of 9,8 of 9,9 of 9,Johnny 5" />		
+			<property name="Buffs" value="buffNPCStatusCheck;buffStatusCheck01" />
+			  <!-- This is the block it'll call home -->
+			<property name="HomeBlocks" value="cntNPCHomeBlock"/>
+			<property name="HireCurrency" value="carBattery" />
+			<property name="HireCost" value="1" />
+		</entity_class>
+	</append>
+</configs>
